@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animali Felici</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#004aad">
+
+<style>
+body {
+  margin: 0;
+  background: #eaf4ff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: #004aad;
+  font-size: 26px;
+  margin: 12px;
+}
+
+.area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+}
+
+.animale {
+  font-size: 75px;
+  background: white;
+  border-radius: 20px;
+  padding: 14px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.animale:active {
+  transform: scale(1.2);
+}
+
+button {
+  font-size: 22px;
+  padding: 14px 22px;
+  border-radius: 14px;
+  background: #008cff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block;
+  width: 80%;
+  max-width: 320px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🐾 Tocca gli Animali 🐾</h1>
+
+<button onclick="avviaMusica()">🎵 Avvia Musica</button>
+
+<div class="area">
+  <div class="animale" onclick="tocca(this)">🐶</div>
+  <div class="animale" onclick="tocca(this)">🐕</div>
+  <div class="animale" onclick="tocca(this)">🐩</div>
+  <div class="animale" onclick="tocca(this)">🐱</div>
+  <div class="animale" onclick="tocca(this)">🐰</div>
+</div>
+
+<h1>🎮 Giochi</h1>
+
+<button onclick="location.href='https://poki.com/it/g/lucky-claw-machine'">
+🎮 Lucky Claw Machine
+</button>
+
+<button onclick="location.href='https://poki.com/it/g/plonky'">
+🎈 Plonky
+</button>
+
+<button onclick="location.href='https://poki.com/it/g/dreadhead-parkour'">
+🏃 Dreadhead Parkour
+</button>
+
+<audio id="musica" loop>
+  <source src="https://www.soundjay.com/misc/sounds/cartoon-climb-a-1.mp3">
+</audio>
+
+<script>
+let musicaPartita = false;
+const musica = document.getElementById("musica");
+
+function avviaMusica() {
+  if (!musicaPartita) {
+    musica.volume = 0.5;
+    musica.play();
+    musicaPartita = true;
+  }
+}
+
+function tocca(el) {
+  el.style.transform = "scale(1.3) rotate(8deg)";
+  setTimeout(() => {
+    el.style.transform = "scale(1)";
+  }, 400);
+}
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+
+</body>
+</html>
